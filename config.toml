@@ -1,0 +1,19 @@
+baseURL = "https://laurence-watson.com"
+title = "Laurence Watson"
+theme = "ghostwriter"
+googleAnalytics = "UA-122723485-1"
+
+[Params]
+    mainSections = ["post"]
+    intro = true
+    headline = "Laurence Watson"
+    description = "just some guy"
+    github = "https://github.com/rabscuttler"
+    twitter = "https://twitter.com/laurencewwatson"
+    email = "laurence@treebeard.io"
+    opengraph = true
+    shareTwitter = true
+    dateFormat = "Mon, Jan 2, 2006"
+
+[Permalinks]
+    post = "/:filename/"

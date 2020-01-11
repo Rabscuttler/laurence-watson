@@ -1,0 +1,66 @@
++++
+title = "Playing with pts.js"
+description = "Setting up with pts"
+tags = [
+    "javascript",
+    "visuals"
+]
+date = "2018-08-09T15:57:25Z"
++++
+
+I just noticed <a href="https://ptsjs.org/">Pts</a>, a very shiny looking design and graphics library in typescript and wanted to play. Since finding <a href="https://twitter.com/beesandbombs">@beesandbombs</a> and his beautiful animations I've been looking forward to trying to make some fun things with <a href="https://p5js.org/">P5</a> - and now Pts. So, let's just get the example running:
+</br></br>
+
+<div id="hello"></div>
+
+<style>
+ #hello {
+  width:80vw;
+  max-width: 600px;
+  height:80vw;
+  max-height:600px;
+  display:block;
+  margin: 20px;
+}
+</style>
+<script type="text/javascript" src="https://unpkg.com/pts@0.5.0/dist/pts.js"></script>
+<script type="text/javascript">
+  (function(){
+    Pts.namespace( this ); // add Pts into scope if needed
+
+    var demoID = "hello";
+
+    // create Space and Form
+    var space = new CanvasSpace("#"+demoID).setup({ retina: true, resize: true });
+    var form = space.getForm();
+
+
+    // animation
+    space.add( (time, ftime) => {
+
+      // rectangle
+      var rect = Rectangle.fromCenter( space.center, space.size.$divide(4));
+      var poly = Rectangle.corners( rect );
+      poly.shear2D( Num.cycle( time%2000/2000 ) - 0.5, space.center );
+
+      // triangle
+      var tris = poly.segments( 2, 1, true );
+      tris.map( (t) => t.push( space.pointer ) );
+
+      // circle
+      var circles = tris.map( (t) => Triangle.incircle( t ) );
+
+      // drawing
+      form.fillOnly("#123").polygon( poly );
+      form.fill("#6f6").circles( circles );
+      form.strokeOnly("#fff ", 3 ).polygons( tris );
+      form.fill("#123").point( space.pointer, 5 );
+
+    });
+
+    // start
+    space.playOnce(200000).bindMouse().bindTouch();
+
+  })();
+</script>
+
