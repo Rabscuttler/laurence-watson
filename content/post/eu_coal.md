@@ -9,6 +9,7 @@ tags: [
   "carbon tracker",
   "report"
   ]
+author: "Laurence Watson"
 ---
 
 In December 2017 I co-authored a report with [Matt Gray](https://twitter.com/matthewcgray) at Carbon Tracker entitled ["Lignite of the Living Dead: Below 2°C scenario and strategy analysis for EU coal power investors"](https://www.carbontracker.org/reports/lignite-living-dead/).
