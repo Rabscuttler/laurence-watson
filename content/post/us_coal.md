@@ -9,7 +9,7 @@ tags: [
   "carbon tracker",
   "report"
     ]
-author = "Laurence Watson"
+author : "Laurence Watson"
 ---
 
 The first report I co-authored at Carbon Tracker with [Matt Gray](https://twitter.com/matthewcgray) was called [No Country for Coal Gen– Below 2°C and regulatory risk for US coal power owners](https://www.carbontracker.org/reports/no-country-for-coal-gen-below-2c-and-regulatory-risk-for-us-coal-power-owners/). We addressed the trends affecting the sector and developed an asset-level phase-out model for coal plants suitable to meet the aims of the Paris Agreement.
