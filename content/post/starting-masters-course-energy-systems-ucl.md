@@ -4,6 +4,7 @@ date = "2018-09-22T13:18:41+01:00"
 tags = [
     "ESDA"
 ]
+author = "Laurence Watson"
 +++
 
 I am very excited to be joining the brand new [Energy Systems and Data Analytics (ESDA) Masters course](https://www.ucl.ac.uk/bartlett/energy/programmes/energy-systems-and-data-analytics-msc/content) at UCL in the next few weeks. I'm looking to build on my existing skills and develop my learning across the course areas; from energy systems to transport and the built environment. As soon as I saw the course ad tweeted out by UCL Energy Institute I was hooked. 

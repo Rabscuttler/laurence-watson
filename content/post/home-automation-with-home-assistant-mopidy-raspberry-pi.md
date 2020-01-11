@@ -1,7 +1,7 @@
 +++
 date = "2016-03-30"
 title = "Small steps to an autonomous future"
-
+author = "Laurence Watson"
 +++
 
 **Summary:** Every morning my lights turn themselves on, along with my amplifier which begins playing a random song off my wake up playlist. 

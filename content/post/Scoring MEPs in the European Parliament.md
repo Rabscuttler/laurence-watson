@@ -2,7 +2,7 @@
 title = "Scoring MEPs in the European Parliament"
 date = "2016-03-30T23:11:57+01:00"
 tags = [""]
-
+author = "Laurence Watson"
 +++
 
 **Curated voting data, visualising MEP groupings, scoring your local MEP**
