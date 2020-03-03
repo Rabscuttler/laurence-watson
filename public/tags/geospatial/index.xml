@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>geospatial on Laurence Watson</title>
+    <link>https://laurence-watson.com/tags/geospatial/</link>
+    <description>Recent content in geospatial on Laurence Watson</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 03 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://laurence-watson.com/tags/geospatial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Talk: Identifying Solar PV from Aerial Imagery</title>
+      <link>https://laurence-watson.com/talks/solar_pv/</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/talks/solar_pv/</guid>
+      <description>-- -- Identifying Solar PV from Aerial Imagery Laurence Watson
+Digimap GeoForum, March 2020
+@LaurenceWWatson Co-founder at treebeard.io Locating solar panels is useful for better production forecasts, understanding load on the low-voltage electricity grid, and tracking solar growth across the world. In the UK, despite the Feed In Tariff database, many panel locations are not known. I used computer vision and machine learning techniques combined with overhead aerial imagery to find and locate UK solar panels and you can too.</description>
+    </item>
+    
+  </channel>
+</rss>

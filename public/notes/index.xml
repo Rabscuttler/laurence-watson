@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on Laurence Watson</title>
+    <link>https://laurence-watson.com/notes/</link>
+    <description>Recent content in Notes on Laurence Watson</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 25 Feb 2018 16:35:07 +0000</lastBuildDate>
+    
+	<atom:link href="https://laurence-watson.com/notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Notebook with inline plots</title>
+      <link>https://laurence-watson.com/notes/notebook-with-inline-plots/</link>
+      <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/notes/notebook-with-inline-plots/</guid>
+      <description>Let&amp;rsquo;s do an inline plot
+import numpy as np import matplotlib.pyplot as plt %matplotlib inline x = np.linspace(-np.pi, np.pi, 201) plt.plot(x, np.sin(x)) plt.xlabel(&amp;#39;Angle [rad]&amp;#39;) plt.ylabel(&amp;#39;sin(x)&amp;#39;) plt.axis(&amp;#39;tight&amp;#39;) plt.show() </description>
+    </item>
+    
+    <item>
+      <title>Test Notebook</title>
+      <link>https://laurence-watson.com/notes/test-notebook/</link>
+      <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/notes/test-notebook/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

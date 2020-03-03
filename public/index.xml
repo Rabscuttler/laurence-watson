@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Laurence Watson</title>
+    <link>https://laurence-watson.com/</link>
+    <description>Recent content on Laurence Watson</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 03 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://laurence-watson.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Talk: Identifying Solar PV from Aerial Imagery</title>
+      <link>https://laurence-watson.com/talks/solar_pv/</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/talks/solar_pv/</guid>
+      <description>-- -- Identifying Solar PV from Aerial Imagery Laurence Watson
+Digimap GeoForum, March 2020
+@LaurenceWWatson Co-founder at treebeard.io Locating solar panels is useful for better production forecasts, understanding load on the low-voltage electricity grid, and tracking solar growth across the world. In the UK, despite the Feed In Tariff database, many panel locations are not known. I used computer vision and machine learning techniques combined with overhead aerial imagery to find and locate UK solar panels and you can too.</description>
+    </item>
+    
+    <item>
+      <title>ESDA: Energy Systems - W1 - WEO 2017</title>
+      <link>https://laurence-watson.com/esda-energysystems-week1-weo2017/</link>
+      <pubDate>Sun, 30 Sep 2018 09:37:39 +0100</pubDate>
+      
+      <guid>https://laurence-watson.com/esda-energysystems-week1-weo2017/</guid>
+      <description>Reading time: 4.5 minutes
+The World Energy Outlook (WEO) is the flagship product of the International Energy Agency (IEA), and one of the most influential energy models worldwide; used by governments, corporations and institutions to assess the changing energy landscape and consider how the future will evolve. In its own words, “the gold standard of energy analysis”. It is a formidable effort and hugely comprehensive.
+I will consider the executive summary from WEO 2017, briefly outline the IEA scenarios offered, detail the major energy trends, and question whether the IEA&amp;rsquo;s presentation of its scenarios could be improved.</description>
+    </item>
+    
+    <item>
+      <title>Starting a Masters course, ESDA @ UCL</title>
+      <link>https://laurence-watson.com/starting-masters-course-energy-systems-ucl/</link>
+      <pubDate>Sat, 22 Sep 2018 13:18:41 +0100</pubDate>
+      
+      <guid>https://laurence-watson.com/starting-masters-course-energy-systems-ucl/</guid>
+      <description>I am very excited to be joining the brand new Energy Systems and Data Analytics (ESDA) Masters course at UCL in the next few weeks. I&amp;rsquo;m looking to build on my existing skills and develop my learning across the course areas; from energy systems to transport and the built environment. As soon as I saw the course ad tweeted out by UCL Energy Institute I was hooked.
+I&amp;rsquo;ve been working in and around energy and climate change since 2010 across several policy areas and there has been a consistent need for data driven analysis and evaluation.</description>
+    </item>
+    
+    <item>
+      <title>Playing with pts.js</title>
+      <link>https://laurence-watson.com/playing-with-ptsjs/</link>
+      <pubDate>Thu, 09 Aug 2018 15:57:25 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/playing-with-ptsjs/</guid>
+      <description>I just noticed Pts, a very shiny looking design and graphics library in typescript and wanted to play. Since finding @beesandbombs and his beautiful animations I&#39;ve been looking forward to trying to make some fun things with P5 - and now Pts. So, let&#39;s just get the example running:    #hello { width:80vw; max-width: 600px; height:80vw; max-height:600px; display:block; margin: 20px; }   (function(){ Pts.namespace( this ); // add Pts into scope if needed var demoID = &#34;</description>
+    </item>
+    
+    <item>
+      <title>Home Electricity Monitoring with EmonPi</title>
+      <link>https://laurence-watson.com/home-electricity-monitoring/</link>
+      <pubDate>Sat, 28 Jul 2018 08:46:44 +0100</pubDate>
+      
+      <guid>https://laurence-watson.com/home-electricity-monitoring/</guid>
+      <description>After a long hiatus I&amp;rsquo;ve rebooted the home electricity monitoring system: an EmonTx unit with a sensor round the live cable out of our main electricity meter, sending data to a raspberry pi hat on a pi running EmonCMS.
+This gives a data reading every 10 seconds (in theory - mine is dropping some at present), so you can get a lovely dashboard like this:
+  The EmonCMS home electricity use dashboard   </description>
+    </item>
+    
+    <item>
+      <title>Notebook with inline plots</title>
+      <link>https://laurence-watson.com/notes/notebook-with-inline-plots/</link>
+      <pubDate>Sat, 03 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/notes/notebook-with-inline-plots/</guid>
+      <description>Let&amp;rsquo;s do an inline plot
+import numpy as np import matplotlib.pyplot as plt %matplotlib inline x = np.linspace(-np.pi, np.pi, 201) plt.plot(x, np.sin(x)) plt.xlabel(&amp;#39;Angle [rad]&amp;#39;) plt.ylabel(&amp;#39;sin(x)&amp;#39;) plt.axis(&amp;#39;tight&amp;#39;) plt.show() </description>
+    </item>
+    
+    <item>
+      <title>Test Notebook</title>
+      <link>https://laurence-watson.com/notes/test-notebook/</link>
+      <pubDate>Fri, 02 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/notes/test-notebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Coal power in the EU</title>
+      <link>https://laurence-watson.com/eu_coal/</link>
+      <pubDate>Sun, 25 Feb 2018 19:45:23 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/eu_coal/</guid>
+      <description>In December 2017 I co-authored a report with Matt Gray at Carbon Tracker entitled &amp;ldquo;Lignite of the Living Dead: Below 2°C scenario and strategy analysis for EU coal power investors&amp;rdquo;. We found that over half of currently operating coal plants in the EU are losing money, and with some reasonable assumptions around the carbon price and the costs of compliance with new tighter air pollution limits, 97% would be unprofitable by 2030.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://laurence-watson.com/page/about/</link>
+      <pubDate>Sun, 25 Feb 2018 16:16:21 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/page/about/</guid>
+      <description>About I am an analyst and data scientist. I have spent most of my career working in non-profit think-tanks on energy and climate change, with a side of policy and campaigning.
+I worked with Carbon Tracker for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations.
+Previously I worked in Westminster as a climate and energy policy researcher for Barry Gardiner MP in his role as Shadow Minister for Energy and Climate Change and as senior parliamentary assistant for Gill Furniss MP in her role as Shadow Minister for Business, Energy and Industrial Strategy.</description>
+    </item>
+    
+    <item>
+      <title>Coal power in the USA</title>
+      <link>https://laurence-watson.com/us_coal/</link>
+      <pubDate>Sat, 24 Feb 2018 23:53:43 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/us_coal/</guid>
+      <description>The first report I co-authored at Carbon Tracker with Matt Gray was called No Country for Coal Gen– Below 2°C and regulatory risk for US coal power owners. We addressed the trends affecting the sector and developed an asset-level phase-out model for coal plants suitable to meet the aims of the Paris Agreement.
+We examined how the regulatory framework supports increasingly uncompetitive coal power, and how a phase-out could save US consumers money.</description>
+    </item>
+    
+    <item>
+      <title>Scoring MEPs in the European Parliament</title>
+      <link>https://laurence-watson.com/scoring-meps-in-the-european-parliament/</link>
+      <pubDate>Wed, 30 Mar 2016 23:11:57 +0100</pubDate>
+      
+      <guid>https://laurence-watson.com/scoring-meps-in-the-european-parliament/</guid>
+      <description>Curated voting data, visualising MEP groupings, scoring your local MEP
+It began at a hackathon weekend in Brussels, focusing on European democracy ahead of the 2015 elections. Three of us pulled together a basic project that gave each MEP a score in one policy area, based on a selection of votes made in the European Parliament.
+It ended up as Score-Ep.org, with input from 5 different campaign groups scoring MEPs from all European countries on climate change, fracking, GM crops, the Arms Trade and LGBT Issues.</description>
+    </item>
+    
+    <item>
+      <title>Small steps to an autonomous future</title>
+      <link>https://laurence-watson.com/home-automation-with-home-assistant-mopidy-raspberry-pi/</link>
+      <pubDate>Wed, 30 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://laurence-watson.com/home-automation-with-home-assistant-mopidy-raspberry-pi/</guid>
+      <description>Summary: Every morning my lights turn themselves on, along with my amplifier which begins playing a random song off my wake up playlist.
+My current setup is a Raspberry Pi B+ with a HiFiBerry DAC+. The pi runs Home Assistant  for home automation (lights, plugs, scripts), with Mopidy and Mopify providing the music and user interface.
+My home assistant dashboard looks like this:
+  Blackstock Home Assistant   While the pi looks like this:</description>
+    </item>
+    
+  </channel>
+</rss>
