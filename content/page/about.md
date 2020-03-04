@@ -8,9 +8,9 @@ menu = "main"
 
 ## About
 
-I am an analyst and data scientist. I have spent most of my career working in non-profit think-tanks on energy and climate change, with a side of policy and campaigning.
+I co-founded [Treebeard Technologies](https://treebeard.io) with [Alex Remedios](https://www.linkedin.com/in/alex-remedios-39883154/) on the [Entrepreneur First](https://joinef.com) accelerator programme. We are making software tools for more reliable, reproducible data science.
 
-I worked with [Carbon Tracker](https://carbontracker.org) for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations.
+I am an analyst and data scientist. I have spent most of my career working in non-profit think-tanks on energy and climate change, with a side of policy and campaigning. I worked with [Carbon Tracker](https://carbontracker.org) for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations.
 
 Previously I worked in Westminster as a climate and energy policy researcher for [Barry Gardiner MP](https://www.parliament.uk/biographies/commons/barry-gardiner/146) in his role as Shadow Minister for Energy and Climate Change and as senior parliamentary assistant for [Gill Furniss MP](http://www.parliament.uk/biographies/commons/gill-furniss/4571) in her role as Shadow Minister for Business, Energy and Industrial Strategy.
 
