@@ -1,20 +1,43 @@
 baseURL = "https://laurence-watson.com/"
 title = "Laurence Watson"
-theme = "ghostwriter"
+theme = "hugo-notepadium"
 googleAnalytics = "UA-122723485-1"
 
-[Params]
-    mainSections = ["post"]
-    intro = true
-    headline = "Laurence Watson"
-    description = "data science, software, energy"
-    github = "https://github.com/rabscuttler"
-    twitter = "https://twitter.com/laurencewwatson"
-    linkedin = "https://linkedin.com/in/laurence-watson"
-    medium = "https://medium.com/@laurence_2939"
-    email = "hi@laurence-watson.com"
-    opengraph = true
-    shareTwitter = true
-    dateFormat = "Mon, Jan 2, 2006"
+[params]
+mainSections = ["post"]
+intro = true
+headline = "Laurence Watson"
+slogan = "data science, energy, climate"
+github = "https://github.com/rabscuttler"
+twitter = "https://twitter.com/laurencewwatson"
+linkedin = "https://linkedin.com/in/laurence-watson"
+medium = "https://medium.com/@laurence_2939"
+email = "hi@laurence-watson.com"
+opengraph = true
+shareTwitter = true
+dateFormat = "Mon, Jan 2, 2006"
+style = "auto"
+
+[params.nav]
+showCategories = false       # /categories/
+showTags = false             # /tags/
+
+[[params.nav.custom]]
+title = "About"
+url = "/about"
+
+[[params.nav.custom]]
+title = "Talks"
+url = "/talks"
+
+[[params.nav.custom]]
+title = "Notes"
+url = "/notes"
+
+[params.assets]
+css = ["css/font.css", "css/color.css", "css/layout.scss"]  # *.css/scss/sass
+js = ["js/addthis_widget.js", "js/highlight.js", "js/hljs.js", "js/markdown.js", "js/marked.js", "js/notes.js", "js/prism.js", "js/reveal.js" ]
+
+
 [Permalinks]
     post = "/:filename/"
