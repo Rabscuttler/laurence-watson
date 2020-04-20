@@ -20,7 +20,7 @@ style = "auto"
 
 [params.nav]
 showCategories = false       # /categories/
-showTags = true             # /tags/
+showTags = false             # /tags/
 
 [[params.nav.custom]]
 title = "About"
