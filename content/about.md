@@ -22,4 +22,4 @@ I have an undergraduate degree in physics from the University of Cambridge and a
 
 {{< figure src="/img/LW-Sept2018_wide_med.jpg" title="Laurence Watson" alt="Laurence Watson" >}}
 
-This blog is made with [Hugo](https://gohugo.io) and the theme is adapted from [Ghostwriter](https://themes.gohugo.io/ghostwriter/)
+This blog is made with [Hugo](https://gohugo.io) and the theme is adapted from [Hugo-Notepadium](https://themes.gohugo.io/hugo-notepadium/)
