@@ -1,6 +1,6 @@
 baseURL = "https://laurence-watson.com/"
 title = "Laurence Watson"
-theme = "hugo-notepadium"
+theme = "hugo-notepadium-lw"
 googleAnalytics = "UA-122723485-1"
 
 [params]
