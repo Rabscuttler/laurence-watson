@@ -1,0 +1,1053 @@
++++
+title = "Talk: From Coal To Solar - Tracking Power with ML and Satellites @ ODSC"
+description = "ODSC Virtual Conference, September 2020"
+tags = [
+"geospatial",
+"talk",
+"solar",
+"coal",
+"data science"
+]
+date = "2020-09-19"
+author = "Laurence Watson"
++++
+
+<div class="line top"></div>
+<div class="line bottom"></div>
+<div class="line left"></div>
+<div class="line right"></div>
+<div class="reveal">
+  <div class="slides">
+    <section id="title" data-background="/img/nasa.jpg">
+      <h2>From Coal to Solar: Tracking Power With Machine Learning and Satellites</h2>
+      <p style="background-color: white; opacity:0.8">ODSC, September 2020</p>
+      <p style="background-color: white; opacity:0.8">
+        <a href="https://twitter.com/laurencewwatson">@LaurenceWWatson</a>
+        <br>
+        <a href="https://futureenergy.associates">Future Energy Associates</a>
+      </p>
+    </section>
+
+    <!-- <section>
+      <h2></h2>
+      <p class="fragment">
+      </p>
+      <p class="fragment">
+      </p>
+      <aside class="notes">
+      </aside>
+    </section>
+     -->
+
+    <!-- INTRO -->
+    <section>
+      <h2>What I'll cover</h2>
+      <p>
+        <ol>
+          <li>The big picture</li>
+          <li>Growth of geospatial data</li>
+          <li>Coal -> needs to go</li>
+          <li>Solar -> needs to be cheaper and better</li>
+          <li>Geospatial ML pipeline with RasterVision</li>
+        </ol>
+      </p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <!-- THE CONTEXT -->
+    <section data-background="/img/vince-gx-tGtwSGyY8Lk-unsplash.jpg">
+      <h2>The Big picture</h2>
+      <p class="attribution">Photo by Vince Gx on Unsplash</p>
+    </section>
+
+    <!-- Net zero -->
+    <section data-background="/img/_stripes_GLOBE---1850-2019-MO.png">
+      <h2>Climate change<br> and net zero</h2>
+      <p class="attribution">
+        From <a href="https://showyourstripes.info/">https://showyourstripes.info/</a>
+      </p>
+    </section>
+
+    <!-- Implications -->
+    <section>
+      <h2>What does that mean?</h2>
+      <p><img src="/img/CarbonBudgetAnimation_IMAGE_26.gif">
+      </p>
+      <p class="attribution">
+        Glen Peters, CICERO,
+        <a
+          href="https://www.cicero.oslo.no/en/posts/climate-news/stylised-pathways-to-well-below-2c">https://www.cicero.oslo.no/en/posts/climate-news/stylised-pathways-to-well-below-2c</a>
+      </p>
+    </section>
+
+    <!-- Coal plants worldwide -->
+    <section>
+      <h2>Coal plants worldwide</h2>
+      <p style="font-size: 20px">Coal power for electricity contributed 30% of global CO2 emissions in 2018 (<a
+          href="https://www.iea.org/reports/global-energy-co2-status-report-2019/emissions">IEA</a>).</p>
+      <p><img src="/img/coal_plants.png"></p>
+      <p class="attribution">Source: Carbon Brief, <a
+          href="https://www.carbonbrief.org/mapped-worlds-coal-power-plants">
+          https://www.carbonbrief.org/mapped-worlds-coal-power-plants </a>
+      </p>
+    </section>
+
+    <section>
+      <section>
+        <h2>Power plant data</h2>
+        <p>The World Resources Institute has a great open dataset</p>
+        <p><img src="/img/WRI.png"></p>
+      </section>
+
+      <section>
+        <h2>Power plant data</h2>
+        <pre><code class="language-python">
+      import pandas as pd
+      import matplotlib.pyplot as plt
+      sns.set_color_codes("muted")
+      sns.set(font_scale=2)
+      
+      power_plants = pd.read_csv("talk_data/global_power_plant_database.csv")
+      f, ax = plt.subplots(figsize=(12, 8))
+      
+      plants = power_plants.groupby('primary_fuel')\
+                            .sum()\
+                            .sort_values('estimated_generation_gwh', ascending=False)\
+                            .reset_index()
+        
+      sns.barplot(x="estimated_generation_gwh", y="primary_fuel", data=plants,
+                  label="Total", color="b")
+      
+      ax.set(ylabel="", xlabel="Estimated Generation 2018 in GWh")
+      sns.despine(left=True, bottom=True)
+    </code></pre>
+      </section>
+      <section>
+        <p><img src="/img/generation_2018.png"></p>
+        <p class="attribution">
+          Data:
+          <a
+            href="https://datasets.wri.org/dataset/globalpowerplantdatabase">https://datasets.wri.org/dataset/globalpowerplantdatabase</a>
+        </p>
+      </section>
+    </section>
+
+
+    <section>
+      <p><img src="/img/coal_a_day.png"></p>
+      <p class="attribution">Source: Carbon Tracker Initiative <a href="https://carbontracker.org/earth-to-investors/">
+          https://carbontracker.org/earth-to-investors/ </a>
+      </p>
+    </section>
+
+    <!-- Solar worldwide -->
+    <section>
+      <h2>Solar - part of the solution 🌞🌞🌞</h2>
+      <p>
+      </p>
+    </section>
+
+    <!-- Solar worldwide -->
+    <section data-background="/img/pv.jpg">
+      <h2>Quiz - how much of the world's electricity was:</h2>
+      <ul>
+        <li>low-carbon</li>
+        <li>renewable</li>
+        <li>what about energy?</li>
+      </ul>
+    </section>
+
+    <section>
+      <img src="/img/global_elec_2019.png" style="max-height: 50vh" /></p>
+    </section>
+
+    <!-- Power sector unlocks other sectors -->
+    <section>
+      <h2>Powering the transition</h2>
+      <p><img src="/img/sector_coupling.png" style="max-height: 50vh" /></p>
+      <p class="attribution">Linking the Power and Transport Sectors—Part 1: The Principle of Sector Coupling,
+        Robinius
+        et
+        al, Energies 2017, 10(7), 956; <a
+          href="https://doi.org/10.3390/en10070956">https://doi.org/10.3390/en10070956</a>
+      </p>
+    </section>
+
+    <!-- GEOSPATIAL ANALYSIS FOR ENERGY AND CLIMATE -->
+    <section>
+      <h2>Geospatial Analysis for energy</h2>
+    </section>
+
+    <section>
+      <h2>Geospatial terms</h2>
+      <p class="fragment">
+        Spatial vs geospatial
+      </p>
+      <p><img src="/img/raster-vector.png" class="fragment" style="max-height: 40vh" /></p>
+      <p class="attribution">Source: Dr Joanna Kuleszo @ UCL</p>
+    </section>
+
+    <section>
+      <h2>Raster</h2>
+      <p>e.g. *.tif, *.jpg, *.exif, *.png, *.gif</p>
+      <p><img src="/img/raster.jpg" class="fragment" style="max-height: 50vh" /></p>
+    </section>
+
+    <section>
+      <section>
+        <h2>Geospatial Vector</h2>
+        <p>e.g. *.geojson, *.shp, ...</p>
+        <p><img src="/img/vector.png" class="fragment" style="max-height: 50vh" /></p>
+      </section>
+
+      <section>
+        <p><img src="/img/shapelytypes.png" class="fragment" style="max-height: 50vh" /></p>
+        <p>Source: <a
+            href="https://automating-gis-processes.github.io/site/notebooks/L1/geometric-objects.html">AutoGIS,
+            University of Helsink</a>, 'These materials are partly based on Shapely-documentation and Westra E. (2013),
+          Chapter 3.'</p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Coordinate systems</h2>
+      <pre><code class="language-python">
+        import geopandas as gpd
+        gb_outline = gpd.read_file('greatbritain.shp')
+        gb_outline.plot(figsize=(8,8))
+        </code></pre>
+      <img src="/img/uk_bng.png" class="fragment" style="max-height: 40vh" />
+    </section>
+
+    <section>
+      <h2>Coordinate systems</h2>
+      <pre><code class="language-python">
+      gb_outline.crs
+      </code></pre>
+      <pre><code class="language-none">
+        Projected CRS: EPSG:27700
+        Name: OSGB 1936 / British National Grid
+        Axis Info [cartesian]:
+        - E[east]: Easting (metre)
+        - N[north]: Northing (metre)
+        Area of Use:
+        - name: UK - Britain and UKCS 49°46'N to 61°01'N, 7°33'W to 3°33'E
+        - bounds: (-9.2, 49.75, 2.88, 61.14)
+        Coordinate Operation:
+        - name: British National Grid
+        - method: Transverse Mercator
+        Datum: OSGB 1936
+        - Ellipsoid: Airy 1830
+        - Prime Meridian: Greenwich
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Coordinate systems</h2>
+      <pre><code class="language-python">
+        gb_outline.to_crs(crs={'init':'epsg:4326'}).plot()
+        </code></pre>
+      <p><img src="/img/uk_wgs84.png" class="fragment" style="max-height: 50vh" /></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h2>Coordinate systems</h2>
+      <pre><code class="language-python">
+        wgs(gb_outline).crs
+        </code></pre>
+      <pre><code class="language-none">
+        Geographic 2D CRS: +init=epsg:4326 +type=crs
+          Name: WGS 84
+          Axis Info [ellipsoidal]:
+          - lon[east]: Longitude (degree)
+          - lat[north]: Latitude (degree)
+          Area of Use:
+          - name: World
+          - bounds: (-180.0, -90.0, 180.0, 90.0)
+          Datum: World Geodetic System 1984
+          - Ellipsoid: WGS 84
+          - Prime Meridian: Greenwich
+        </code></pre>
+    </section>
+
+    <section>
+      <h2>Web Mercator</h2>
+      <p class="fragment">
+        <blockquote>General lack of understanding that the Web Mercator differs from standard Mercator usage has
+          caused
+          considerable confusion and misuse. For all these reasons, the United States Department of Defense through
+          the
+          National Geospatial-Intelligence Agency has declared this map projection to be unacceptable for any
+          official
+          use.
+        </blockquote>
+      </p>
+      <p><sub>from <a href="https://en.wikipedia.org/wiki/Web_Mercator_projection#cite_note-Battersby-4">wikipedia
+            Web
+            Mercator projection</a></sub></p>
+      <aside class="notes">
+      </aside>
+    </section>
+
+    <section>
+      <h2>Python tools</h2>
+      <ul>
+        <li><a href="https://geopandas.org/">geopandas</a> - geospatial dataframes</li>
+        <li><a href="https://shapely.readthedocs.io/en/latest/manual.html">shapely</a> - manipulation of planar
+          features,
+          geometric objects, geometry operations</li>
+        <li><a href="https://python-visualization.github.io/folium/">folium</a> - leaflet.js maps in python</li>
+        <li><a href="https://rasterio.readthedocs.io/en/latest/">rasterio</a> - access to raster data in python
+        </li>
+      </ul>
+      </p>
+    </section>
+
+    <!-- IMAGE DATA -->
+    <section>
+      <h2>Data</h2>
+      <p>
+      </p>
+    </section>
+
+    <!-- Aerial images -->
+    <section>
+      <h2>Aerial data</h2>
+      <p>Shot from planes. <br>
+        Now also from drones.<br>
+        Very high resolution (less than 0.25m per pixel)<br>
+        Infrequent creation (ie low revisit rate)</p>
+    </section>
+
+    <!-- Satellite data -->
+    <section>
+      <h2>Satellite data</h2>
+      <p>Huge growth in availability</p>
+      <p>Resolution getting better all the time (less than 3m visual band becoming widely available - but paid, 10m
+        visual through Sentinel)</p>
+      <p>Multi-spectral thanks to many different satellite sensors: good for SOx, NOx, Methane, CO2, etc</p>
+    </section>
+
+    <section>
+      <h2>Landsat 8, launched 2013</h2>
+      <p><img src="/img/Landsat_Data_Continuity_Mission_Observatory_testing.jpg" class="fragment"
+          style="max-height: 50vh" /></p>
+      <p class="attribution">
+        By Orbital Sciences Corporation - http://ldcm.gsfc.nasa.gov/gallery/image_pages/spacecraft/spc0004.html,
+        Public
+        Domain, https://commons.wikimedia.org/w/index.php?curid=21978290
+      </p>
+    </section>
+
+    <section>
+      <h2>Planet's cubesats, </h2>
+      <p>In 2015, Planet had 92 satellites. In 2017 in launched 88 - the 'dove' constellation, promising 1 day revisit
+        rate - global daily coverage!</p>
+      <p><img src="/img/planet_cubesat.jpeg" class="fragment" style="max-height: 70vh" /></p>
+      <p class="attribution">
+        Photo: Planet Labs CEO Will Marshall, credit: Steve Jurvetson
+      </p>
+    </section>
+
+    <!-- Satellite bands -->
+    <section>
+      <h2>Satellite sensor bands</h2>
+      <p><img src="/img/satellitebands.png" class="fragment" style="max-height: 50vh" /></p>
+      <p class="fragment">
+        Source: https://landsat.gsfc.nasa.gov/sentinel-2b-successfully-launches/
+      </p>
+    </section>
+
+    <section>
+      <section>
+        <h2>Getting Sentinel2 data</h2>
+        <p>One option: Google Earth Engine</p>
+        <p><a href="https://earthengine.google.com/">https://earthengine.google.com/</a></p>
+        <p><img src="/img/ee.png" class="fragment" style="max-height: 35vh" /></p>
+      </section>
+      <section>
+        <pre class="language-python"><code>
+            conda update -c conda-forge earthengine-api
+            
+            # or 
+            
+            pip install earthengine-api --upgrade
+          </code></pre>
+      </section>
+      <section>
+        <pre class="language-python"><code>
+            import ee
+
+            def obtain_sentinel_imgs(collection='COPERNICUS/S2', 
+                date_range, area, max_cc_pct=None):
+            """
+            Selection of median, cloud-free image from a 
+            collection of images in the Sentinel 2 dataset
+
+            Parameters
+            ----------
+            collection: str
+            Name of the collection
+            date_range: list
+            Must be of the following form ['%Y-%m-%d','%Y-%m-%d']
+            area: ee.geometry.Geometry
+            Area of interest
+            reduction: str
+            Operation to be carried out over the aggregated image
+            max_cc_pct: float
+            Maximum cloud cover percentage to be returned
+
+            Returns
+            -------
+            sentinel_median: ee.image.Image
+
+            """
+
+            col = (ee
+            .ImageCollection(collection)
+            .filterBounds(area)
+            .filterDate(date_range[0], date_range[1])
+            )
+
+            if max_cc_pct is not None:
+            col = col.filter(ee.Filter.lt(
+                'CLOUDY_PIXEL_PERCENTAGE',
+                max_cc_pct))
+
+            return col
+          </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <h2>Working with imagery data</h2>
+        <p>xarray</p>
+        <pre><code>
+          array = xr.open_mfdataset(f'../data/imgs_eu/my_plant.nc', combine='by_coords')
+        </code></pre>
+      </section>
+      <section>
+        <p><img src="/img/xarray_dataset.png" class="fragment" style="max-height: 50vh" /></p>
+      </section>
+    </section>
+
+    <section>
+      <h1>Cloud native imagery?</h1>
+      <p><a href="https://stacspec.org/">STAC: SpatioTemporal Asset Catalogs</a></p>
+      <p><a href="https://www.cogeo.org/">Cloud Optimized GeoTIFF</a></p>
+    </section>
+
+    <!-- WHAT OPTIONS ARE THERE FOR GEOSPATIAL ANALYSIS? -->
+
+    <!-- RASTERVISION -->
+
+    <!-- MONITORING COAL PLANTS -->
+    <section>
+      <h2>MONITORING COAL PLANTS</h2>
+      <p>
+      </p>
+    </section>
+
+    <section>
+      <h2></h2>
+      <img src="/img/coal_hebei_planet.gif" />
+      <p>
+        Huai'an power station in Hebei province, 660 MW
+      </p>
+    </section>
+
+    <section>
+      <h2></h2>
+      <img src="/img/coal_hebei_2.gif" />
+      <p>
+        Zhangjiakou coal power plant in Hebei province, 2.6 GW
+      </p>
+      <p>
+        Source: <a
+          href="https://qz.com/1419899/satellite-images-reveal-coal-power-is-bad-business-for-china/">https://qz.com/1419899/satellite-images-reveal-coal-power-is-bad-business-for-china/</a>
+        via Carbon Tracker via Planet
+      </p>
+    </section>
+
+    <!-- WHY? -->
+    <section>
+      <h2></h2>
+      <img src="/img/why_coal.png" />
+      <p class="attribution">Matt Gray, Managing Director, Co-Head of Power & Utilities at Carbon Tracker,
+        <a
+          href="https://www.slideshare.net/MatthewGray16/bloomberg-satellite-and-climate-convening">https://www.slideshare.net/MatthewGray16/bloomberg-satellite-and-climate-convening</a>
+      </p>
+    </section>
+
+    <!-- HOW? -->
+    <section>
+      <h2></h2>
+      <img src="/img/nowhere_to_hide_methodology.png" />
+      <p class="attribution">Carbon Tracker,
+        <a
+          href="https://carbontracker.org/reports/nowhere-to-hide/">https://carbontracker.org/reports/nowhere-to-hide/</a>
+      </p>
+    </section>
+
+    <!-- TRACKING UK SOLAR PV -->
+    <section>
+      <h2>Why do UK solar panels need locating?</h2>
+    </section>
+
+    <section>
+      <h2>Better forecasting</h2>
+      <p><img src="/img/openclimatefix.png" class="fragment" /></p>
+      <p class="fragment">
+        In the UK, better PV forecasts should save £1-10 million per year
+        [1], and about 100,000 tonnes of CO2 per year.
+      </p>
+      <p class="fragment">
+        [1]<a
+          href="https://www.researchgate.net/profile/Jamie_Taylor7/project/PV-Live/attachment/58342d5c08ae5e4c8b365783/AS:431187387785227@1479814492614/download/JamieTaylor_PV_Live_v1_20161122.pdf">Taylor
+          et al, 2016</a>
+      </p>
+      <aside class="notes">
+        Inaccuracy of production forecasts for intermittent generators like
+        solar and wind resources mean spinning reserves needed by National
+        Grid. Better forecasts -> less standby generation needed, which is
+        usually more polluting. The grid would require less spinning reserve
+        if they had better PV forecasts for the next few hours. That is,
+        better PV forecasts would reduce carbon emissions, and save money.
+        In the UK, better PV forecasts should save £1-10 million per year
+        (Taylor et al, 2016), and about 100,000 tonnes of CO2 per year.
+        Scaled up globally, the carbon savings should be of the order of
+        tens of millions of tonnes per year.
+      </aside>
+    </section>
+
+    <section>
+      <h4>UK PV over time</h4>
+      <img src="/img/05_chart_date_size_uk_pv5.jpg" />
+    </section>
+
+    <section>
+      <!-- Nowcasting -->
+      <h4>Nowcasting</h4>
+      <iframe width="1008" height="567" src="https://www.youtube.com/embed/IOp-tj-IJpk" frameborder="0"
+        data-autoplay></iframe>
+      <p>
+        Source:
+        <a href="https://www.climatechangenews.com/2020/02/12/one-million-solar-panels-knew/">Open Climate Fix</a>
+      </p>
+      <aside class="notes">
+        'Nowcasting' or near-realtime forecasting could make use of precise
+        cloud-cover predictions combined with accurate solar PV locations
+      </aside>
+    </section>
+
+    <section>
+      <section>
+        <h2>My plan to <br />locate solar PV</h2>
+        <ol>
+          <li class="fragment">Get image data set of the UK</li>
+          <li class="fragment">
+            Use Open Street Map labels for solar panels to create a training
+            set
+          </li>
+          <li class="fragment">
+            Use neural networks for semantic segmentation on all images to
+            find the rest of the panels
+          </li>
+          <li class="fragment">Write up and relax</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Semantic segmentation?</h2>
+        <!-- semantic segmentation image -->
+        <img src="/img/semantic_seg.png" />
+        <p>
+          Image source:
+          <a href="https://github.com/CSAILVision/semantic-segmentation-pytorch">CSAIL</a>
+        </p>
+      </section>
+    </section>
+
+    <section>
+      <h4>Workflow</h4>
+      <img src="/img/workflow.png" />
+    </section>
+
+    <!-- Digimap section -->
+    <section>
+      <h2>What data can we use?</h2>
+      <p class="fragment">Academic license - use Digimap</p>
+      <p class="fragment">
+        Aerial Digimap product, licensed from Getmapping plc.
+      </p>
+      <p class="fragment">25cm vertical ortho-photography</p>
+      <p class="fragment">2TB of imagery data...</p>
+      <aside class="notes">
+        Note: Data download - was going to be 100's of requests - so got in
+        touch with Digimap and asked for a bulk download. Machine learning
+        with neural networks depends on large datasets.
+      </aside>
+    </section>
+
+    <section data-background="/img/sz0094_rgb_250_06.jpg">
+      <h2 class="fragment white">Beautiful!</h2>
+    </section>
+
+    <section>
+      <h4>Image age</h4>
+      <img src="/img/digimap_aerial_year.png" style="max-height:50vh" />
+    </section>
+
+
+    <!-- OSM section -->
+    <section>
+      <section>
+        <h2>Ok, but what about the labels?</h2>
+        <p class="fragment">Enter Open Street Map!</p>
+        <p class="fragment">At the time, 15000 labels</p>
+        <p class="fragment">Now... 240,000+ !</p>
+      </section>
+      <section>
+        <img src="/img/05_chart_OSM_bedzed.jpg" />
+      </section>
+      <section>
+        <img src="/img/05_osm_label_errors.jpg" />
+      </section>
+      <section>
+        <pre><code>
+          # # https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_API_by_Example
+
+          solar_query = """
+          [out:json];
+          area["name"="United Kingdom"]->.searchArea;
+          (
+          nwr(area.searchArea)["generator:source"="solar"]['generator:output:electricity'='yes'];
+          );
+          out body;
+          >;
+          out skel qt;
+          """
+        </code></pre>
+        <pre><code class="language-python">
+        overpass_url = "http://overpass-api.de/api/interpreter"
+        
+        import requests
+        osm_pv = requests.get(overpass_url, params={'data': solar_query})
+        df = pd.DataFrame(osm_pv.json()['elements'])
+        </code></pre>
+      </section>
+    </section>
+
+    <!-- RasterVision section -->
+    <section>
+      <section>
+        <h2>Setting up a pipeline?</h2>
+        <p class="fragment">
+          Enter <a href="https://rastervision.io/">RasterVision</a>
+        </p>
+        <blockquote class="fragment">
+          An open source framework for deep learning on satellite and aerial
+          imagery.
+        </blockquote>
+        <p class="fragment">Thank you Azavea 👏</p>
+        <aside class="notes">
+          Note: By Azavea, a USA B-corp who use "Advanced geospatial
+          technology and research for civic and social impact". Also
+          answered my questions on gitter.
+        </aside>
+      </section>
+      <section>
+        <img src="/img/rastervision.png" style="max-height: 60vh" />
+        <aside class="notes">
+          hmmm that workflow looks familiar doesn't it. RasterVision is set
+          up to do one of three tasks - classification of a small image
+          'chip', object detection - drawing a bounding box, and semantic
+          segmentation, which means labelling each pixel according to which
+          class it is in. I want two classes only, PV or not-PV.
+        </aside>
+      </section>
+    </section>
+
+    <!-- RasterVision Explanation -->
+    <section>
+      <section>
+        <h2>How to use RasterVision</h2>
+        <p>
+          See my experiment script here:
+          <a
+            href="https://github.com/Rabscuttler/raster-vision/tree/master/code">https://github.com/Rabscuttler/raster-vision/tree/master/code</a>
+        </p>
+      </section>
+      <section>
+        <h2>Setup</h2>
+        <ul>
+          <li>Docker image</li>
+          <li>nvidia-docker requires Linux for GPUs</li>
+          <li>Dependencies are a pain to manage otherwise</li>
+          <li>
+            GPUs mandatory - model runs can easily take 12hrs+ depending on
+            experiment
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Experiments</h2>
+
+        <p>
+          RasterVision takes on a lot of the work that would be reasonably
+          boilerplate between geospatial analysis projects.
+        </p>
+
+        <pre><code class="language-python" data-trim>
+            import rastervision as rv
+
+            ##########################################
+            # Experiment
+            ##########################################
+
+            class SolarExperimentSet(rv.ExperimentSet):
+            def exp_main(self, test=False):
+
+              # experiment goes here
+          </code></pre>
+      </section>
+      <section>
+        <h2>Experiment Steps</h2>
+        <ul>
+          <li>SETUP</li>
+          <li>TASK</li>
+          <li>BACKEND</li>
+          <li>DATASET (TRAINING & VALIDATION)</li>
+          <li>ANALYZE</li>
+          <li>EXPERIMENT</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Setup</h2>
+        <pre><code class="language-python" data-trim>
+                  # Connect docker filepath mounted to my data directory
+                  base_uri = join(raw_uri, '/labels')
+
+                  # Experiment label, used to label config files
+                  exp_id = 'pv-detection-1'
+
+                  # Number of times passing a batch of images through the model
+                  num_steps = 1e5
+                  batch_size = 8
+                  # Specify whether or not to make debug chips (a zipped sample of png chips
+                  # that you can examine to help debug the chipping process)
+                  debug = True
+
+                  # Split the data into training and validation sets:
+                  # Randomize the order of all scene ids
+                  random.seed(5678)
+                  scene_ids = sorted(scene_ids)
+                  random.shuffle(scene_ids)
+
+                  # Figure out how many scenes make up 80% of the whole set
+                  num_train_ids = round(len(scene_ids) * 0.8)
+                  # Split the scene ids into training and validation lists
+                  train_ids = scene_ids[0:num_train_ids]
+                  val_ids = scene_ids[num_train_ids:]
+          </code></pre>
+      </section>
+      <section>
+        <h2>Task</h2>
+        <pre><code class="language-python" data-trim>
+              # ------------- TASK -------------
+
+              task = rv.TaskConfig.builder(rv.SEMANTIC_SEGMENTATION) \
+                .with_chip_size(300) \
+                .with_classes({
+                'pv': (1, 'yellow'),
+                'background': (2, 'black')
+              }) \
+              .with_chip_options(
+                chips_per_scene=50,
+                debug_chip_probability=0.1,
+                negative_survival_probability=1.0,
+                target_classes=[1],
+                target_count_threshold=1000) \
+              .build()
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Backend</h2>
+        <pre><code class="language-python" data-trim>
+            # # ------------- BACKEND -------------
+            backend = rv.BackendConfig.builder(rv.TF_DEEPLAB) \
+              .with_task(task) \
+              .with_debug(debug) \
+              .with_batch_size(num_steps) \
+              .with_num_steps(batch_size) \
+              .with_model_defaults(rv.MOBILENET_V2) \
+              .build()
+
+            # Make scenes to pass to the DataSetConfig builder.
+            def make_scene(id):
+              ###
+
+            # Create lists of train and test scene configs
+            train_scenes = [make_scene(id) for id in train_ids]
+            val_scenes = [make_scene(id) for id in val_ids]
+            </code>
+            </pre>
+      </section>
+      <section>
+        <h2>Dataset</h2>
+        <pre><code class="language-python" data-trim>
+            # ------------- DATASET -------------
+            # Construct a DataSet config using the lists of train and
+            # validation scenes
+            dataset = rv.DatasetConfig.builder() \
+              .with_train_scenes(train_scenes) \
+              .with_validation_scenes(val_scenes) \
+              .build()
+          </code></pre>
+      </section>
+      <section>
+        <h2>Analyze</h2>
+        <pre><code class="language-python" data-trim>
+                # ------------- ANALYZE -------------
+                # We will need to convert this imagery from uint16 to uint8
+                # in order to use it. We specified that this conversion should take place
+                # when we built the train raster source but that process will require
+                # dataset-level statistics. To get these stats we need to create an
+                # analyzer.
+                analyzer = rv.AnalyzerConfig.builder(rv.STATS_ANALYZER) \
+                  .build()
+          </code></pre>
+      </section>
+      <section>
+        <h2>Experiment</h2>
+        <pre><code class="language-python" data-trim>
+          # ------------- EXPERIMENT -------------
+          experiment = rv.ExperimentConfig.builder() \
+            .with_id(exp_id) \
+            .with_task(task) \
+            .with_backend(backend) \
+            .with_analyzer(analyzer) \
+            .with_dataset(dataset) \
+            .with_root_uri('/opt/data') \
+            .build()
+
+          return experiment
+
+
+          if __name__ == '__name__':
+            rv.main()
+        </code></pre>
+      </section>
+      <section>
+        <h1>Run it!</h1>
+        <p>Start up the docker container</p>
+        <pre><code class="hljs" data-trim>
+          docker run --runtime=nvidia --rm -it -p 6006:6006 \
+            -v ${RV_QUICKSTART_CODE_DIR}:/opt/src/code \
+            -v ${RV_QUICKSTART_EXP_DIR}:/opt/data \
+            quay.io/azavea/raster-vision:gpu-latest /bin/bash
+        </code></pre>
+        <p>Fire away</p>
+        <pre><code class="hljs" data-trim>
+        rastervision run local -p find_the_solar_pv.py
+        </code></pre>
+      </section>
+    </section>
+    <!-- End RV explanation -->
+
+    <section>
+      <h2>Method overview</h2>
+      <ul>
+        <li class="fragment">
+          <strong>Image data</strong> from Aerial Digimap
+        </li>
+        <li class="fragment">
+          Training a model with 9,508 <strong>labels</strong> from Open
+          Street Map
+        </li>
+        <li class="fragment">
+          <strong>Model</strong> is 'off-the-shelf' neural network
+        </li>
+        <li class="fragment">
+          Analysis <strong>pipeline</strong>, training and prediction with
+          RasterVision
+        </li>
+      </ul>
+      <aside class="notes">
+        Pause. Sum up where I am and what I'm about to do. Create UK dataset
+        with OSM images. Only used 1763 image chips at this point (out of
+        244,000) - sorry Iain
+      </aside>
+    </section>
+
+    <section>
+      <h4>That would be too easy.</h4>
+      <img src="/img/fail.png" style="max-height: 50vh" />
+    </section>
+
+    <section>
+      <h2>
+        Creating a good training dataset is hard
+      </h2>
+    </section>
+
+    <section>
+      <h2>
+        Take two: train on an existing dataset
+      </h2>
+      <p>
+        <a
+          href="https://figshare.com/collections/Full_Collection_Distributed_Solar_Photovoltaic_Array_Location_and_Extent_Data_Set_for_Remote_Sensing_Object_Identification/3255643">Distributed
+          Solar Photovoltaic Array Location and Extent Data Set
+          for Remote Sensing Object Identification</a>
+      </p>
+      <p><img src="/img/duke_dataset.png" /></p>
+      <p style="font-size: 20px">
+        Bradbury, Kyle; Saboo, Raghav; Johnson, Timothy; Malof, Jordan;
+        Devarajan, Arjun; Zhang, Wuming; et al. (2016): Full Collection:
+        Distributed Solar Photovoltaic Array Location and Extent Data Set
+        for Remote Sensing Object Identification. figshare. Collection.
+        https://doi.org/10.6084/m9.figshare.c.3255643.v3
+      </p>
+    </section>
+
+    <section>
+      <h2>
+        Predict on UK
+      </h2>
+      <img src="/img/a_epoch_training_UK.jpg" style="max-height: 80vh" />
+    </section>
+
+    <section>
+      <h2>
+        Predict on UK
+      </h2>
+      <img src="/img/uk_results.png" class="fragment" style="max-height: 70vh" />
+    </section>
+
+    <section>
+      <h2>Results on a hand-selected UK set</h2>
+      <img src="/img/confusion.png" class="fragment" style="height: 200px" />
+      <img src="/img/accuracy.png" class="fragment" style="height: 200px" />
+    </section>
+
+    <section>
+      <h3>That's nice, I want pictures</h3>
+      <img src="/img/bristol_farm.jpg" class="fragment" style="max-height: 50vh" />
+      <aside class="notes">
+        This is a solar farm near Bristol. The small predictions here are
+        also correct. However, I'm cheating aren't I - because I said we
+        already knew the large PV locations! What about the small ones?
+      </aside>
+    </section>
+
+    <section>
+      <h3>Urban predictions</h3>
+      <img src="/img/cambridge_preds.jpg" class="fragment" style="max-height: 50vh" />
+      <p>
+        Cambridge - lots of accurate predictions here.
+      </p>
+    </section>
+
+    <section>
+      <h3>Detail</h3>
+      <img src="/img/06_knowsley_predictions.jpg" class="fragment" style="max-height: 50vh" />
+      <p>
+        Knowsley - some hit some miss But - some things like conservatories
+        have not come up as false positives.
+      </p>
+    </section>
+
+    <section>
+      <h3>False positives</h3>
+      <img src="/img/bristol_docks.jpg" class="fragment" style="max-height: 50vh" />
+      <p>
+        Bristol docks confused the model
+      </p>
+    </section>
+
+    <!-- How else would you do it? -->
+    <section>
+      <h3>Alternative methods for geospatial ML</h3>
+      <ul>
+        <li><a
+            href="https://github.com/daveluo/zanzibar-aerial-mapping">https://github.com/daveluo/zanzibar-aerial-mapping</a>
+          aka do it all yourself
+        </li>
+        <li>
+          <a href="https://forums.fast.ai/t/geospatial-deep-learning-resources-study-group/31044">Fast.ai geospatial
+            study group thread</a>
+        </li>
+        <li><a href="https://github.com/cosmiq/solaris">https://github.com/cosmiq/solaris</a></li>
+      </ul>
+    </section>
+
+    <!-- WRAPUP -->
+    <section>
+      <h3>Get involved!</h3>
+      <p class="fragment">
+        Is your curiosity piqued?<br>Do you want to contribute to climate related tech projects?
+      </p>
+      <p class="fragment"><a href="https://openclimatefix.org/get-involved">Open Climate Fix</a></p>
+      <p p class="fragment"><a href="https://climateaction.tech/">ClimateAction.tech</a></p>
+    </section>
+
+    <section>
+      <h2>Thank you</h2>
+      <p>
+        I'm building continuous integration tools for data science teams at
+        <a href="https://treebeard.io">treebeard.io</a>
+      </p>
+      <p>If you do some kind of data science, I'd love to hear from you!</p>
+      <p style="font-size: 26px">
+        Say hi:
+        <a href="mailto:laurence@treebeard.io">laurence@treebeard.io</a>
+      </p>
+      <p style="font-size: 26px">
+        Twitter:
+        <a href="https://twitter.com/laurencewwatson">@LaurenceWWatson</a>
+      </p>
+      <br />
+      <h6>Code</h6>
+      <p style="font-size: 20px">
+        Data wrangling:
+        <a href="https://github.com/Rabscuttler/esda-dissertation">https://github.com/Rabscuttler/esda-dissertation</a>
+      </p>
+      <p style="font-size: 20px">
+        RasterVision scripts:
+        <a
+          href="https://github.com/Rabscuttler/raster-vision/tree/master/code">https://github.com/Rabscuttler/raster-vision/tree/master/code</a>
+      </p>
+    </section>
+
+    <!-- EXTRA SLIDES -->
+    <section>
+      <h3>Don't we know where the PV is already?</h3>
+      <img src="/img/pv_postcode_area.png" style="max-height: 50vh" class="fragment" />
+      <aside class="notes">
+        We know where most of it is. 86% in total. Large sites are all in
+        the Renewable Energy Planning Database (~two thirds of capacity).
+        The Feed-in-Tariff database covers ~4GB of capacity - but not all of
+        that is precisely located. And now the Feed In Tariff is gone, at
+        present there is no centralised method to capture new deployments.
+        This work is also useful as it could be applied to other countries,
+        or to answer other questions.
+      </aside>
+    </section>
+
+    <!-- Results -->
+    <section>
+      <h2>Outcomes</h2>
+      <img src="/img/china_preds.png" style="max-height: 50vh" />
+      <p class="attribution">Carbon Tracker,
+        <a
+          href="https://carbontracker.org/reports/nowhere-to-hide/">https://carbontracker.org/reports/nowhere-to-hide/</a>
+      </p>
+    </section>
+  </div>
+</div>
