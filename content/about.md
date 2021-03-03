@@ -10,6 +10,8 @@ menu = "main"
 
 I am an analyst and data scientist. I have spent most of my career doing data science and analysis type work in non-profit think-tanks on energy and climate change, with a side of policy and campaigning. 
 
+I co-founded [Future Energy Associates](https://futureenergy.associates) with three friends from UCL. We use data science to solve energy sector problems and have worked on a wide range of interesting problems in our first year, including helping a major wind developer optimise site layouts.
+
 I co-founded a company with [Alex Remedios](https://www.linkedin.com/in/alex-remedios-39883154/) on the [Entrepreneur First](https://joinef.com) accelerator programme. We had a go at improving software tools for more reliable, reproducible data science - particularly around the Jupyter project - Alex is taking the open source project forward as [nbmake](https://github.com/treebeardtech/nbmake-action).
 
 Previously, I worked at [Carbon Tracker](https://carbontracker.org) for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations, and helped Matt Gray start a project using satellite imagery to monitor power stations in near-real time. [Our report](https://carbontracker.org/reports/nowhere-to-hide/) was highly commended at the Business Green awards and got some nice writeups: [QZ](https://qz.com/1419899/satellite-images-reveal-coal-power-is-bad-business-for-china/), 
