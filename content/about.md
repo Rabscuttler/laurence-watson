@@ -8,13 +8,15 @@ menu = "main"
 
 ## About
 
-I co-founded [Treebeard Technologies](https://treebeard.io) with [Alex Remedios](https://www.linkedin.com/in/alex-remedios-39883154/) on the [Entrepreneur First](https://joinef.com) accelerator programme. We are making software tools for more reliable, reproducible data science.
+I am an analyst and data scientist. I have spent most of my career doing data science and analysis type work in non-profit think-tanks on energy and climate change, with a side of policy and campaigning. 
 
-I am an analyst and data scientist. I have spent most of my career working in non-profit think-tanks on energy and climate change, with a side of policy and campaigning. I worked with [Carbon Tracker](https://carbontracker.org) for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations.
+I co-founded a company with [Alex Remedios](https://www.linkedin.com/in/alex-remedios-39883154/) on the [Entrepreneur First](https://joinef.com) accelerator programme. We had a go at improving software tools for more reliable, reproducible data science - particularly around the Jupyter project - Alex is taking the open source project forward as [nbmake](https://github.com/treebeardtech/nbmake-action).
+
+Previously, I worked at [Carbon Tracker](https://carbontracker.org) for two years 2017-2019 as a data scientist focusing on stranded asset risk in the power sector, particularly coal-fired power stations, and helped Matt Gray start a project using satellite imagery to monitor power stations in near-real time. [Our report](https://carbontracker.org/reports/nowhere-to-hide/) was highly commended at the Business Green awards and got some nice writeups: [QZ](https://qz.com/1419899/satellite-images-reveal-coal-power-is-bad-business-for-china/), 
 
 Previously I worked in Westminster as a climate and energy policy researcher for [Barry Gardiner MP](https://www.parliament.uk/biographies/commons/barry-gardiner/146) in his role as Shadow Minister for Energy and Climate Change and as senior parliamentary assistant for [Gill Furniss MP](http://www.parliament.uk/biographies/commons/gill-furniss/4571) in her role as Shadow Minister for Business, Energy and Industrial Strategy.
 
-Before that I was head of technology at [Sandbag](https://sandbag.org.uk), an NGO focused on carbon markets.
+Before that I was head of technology at [Sandbag](https://ember-climate.org/) (now Ember), an NGO focused on carbon markets.
 
 I've also worked at the [Alvin Weinberg Foundation](https://en.wikipedia.org/wiki/The_Alvin_Weinberg_Foundation), a charity advocating the development of next-generation nuclear technology and worked as an intern with [Lord Alf Dubs](https://www.parliament.uk/biographies/lords/lord-dubs/805) and at the British Embassy, Prague.
 
