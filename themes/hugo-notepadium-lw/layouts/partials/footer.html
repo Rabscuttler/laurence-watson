@@ -1,12 +1,9 @@
 <section id="footer" class="footer">
     {{- $copyright := site.Copyright -}}
     {{- if not $copyright -}}
-        {{- $copyright = site.Title | safeHTML -}}
+    {{- $copyright = site.Title | safeHTML -}}
     {{- end -}}
     {{- partial "copyright.html" ($copyright | safeHTML) -}}
-    <img style="margin-left: auto;
-    margin-right: auto;
-    display: block;" src="https://api.thegreenwebfoundation.org/greencheckimage/laurence-watson.com" alt="This website is hosted Green - checked by thegreenwebfoundation.org">
 </section>
 {{- partial "math.html" . -}}
 {{- partial "syntax.html" . -}}
